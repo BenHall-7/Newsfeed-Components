@@ -146,8 +146,14 @@ function createArticle(data) {
   p2.textContent = data.secondParagraph;
   p3.textContent = data.thirdParagraph;
   span.textContent = "Open/Close";
-  span.addEventListener("click", ev => {
-    article.classList.toggle("article-open");
+  span.addEventListener("click", () => {
+    if (article.classList.toggle("article-open")) {
+      // opening
+      TweenMax.to(article, 0.5, {height: "500px"});
+    } else {
+      // closing
+      TweenMax.to(article, 0.5, {height: "50px"});
+    }
   })
 
   article.append(h2, date, p1, p2, p3, span);
